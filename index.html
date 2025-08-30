@@ -1,55 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Management</title>
+  <meta charset="UTF-8">
+  <title>Demo Login</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
-    }
-    header {
-      background: #4CAF50;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      font-size: 24px;
-    }
-    .container {
-      padding: 20px;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      margin: 10px 0;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    button {
-      background: #4CAF50;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #45a049;
-    }
+    body { font-family: Arial, sans-serif; background: #f0f0f0; text-align: center; }
+    .login-box { margin: 100px auto; padding: 20px; background: white; width: 300px; border-radius: 10px; box-shadow: 0 0 10px gray; }
+    input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid gray; border-radius: 5px; }
+    button { padding: 10px 20px; border: none; border-radius: 5px; background: #007bff; color: white; cursor: pointer; }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
-  <header>📘 Smart Management</header>
-  <div class="container">
-    <div class="card">
-      <h2>Total Seats: 100</h2>
-      <p>Booked: 0</p>
-      <p>Available: 100</p>
-      <button onclick="alert('Seat Booked Successfully!')">Book Seat</button>
-    </div>
+  <div class="login-box" id="loginBox">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="error" style="color:red;"></p>
   </div>
+
+  <div id="dashboard" class="hidden">
+    <h1>Welcome Wolvi 🚀</h1>
+    <p>You are now logged in!</p>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    function login() {
+      let user = document.getElementById("username").value;
+      let pass = document.getElementById("password").value;
+
+      if(user === "admin" && pass === "1234") {
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("dashboard").classList.remove("hidden");
+      } else {
+        document.getElementById("error").innerText = "Invalid Username or Password!";
+      }
+    }
+
+    function logout() {
+      document.getElementById("dashboard").classList.add("hidden");
+      document.getElementById("loginBox").classList.remove("hidden");
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
+      document.getElementById("error").innerText = "";
+    }
+  </script>
 </body>
 </html>
